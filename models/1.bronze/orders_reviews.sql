@@ -1,0 +1,11 @@
+select 
+    review_score,
+    review_id,
+    order_id,
+    review_comment_title,
+    review_comment_message,
+    review_creation_date,
+    review_answer_timestamp,
+    dex_ingestion_timestamp
+from
+    `dex-hackathon-group-3`.`dex_landing`.`insper_data_3__postgres_ecommerce_db_order_reviews`
