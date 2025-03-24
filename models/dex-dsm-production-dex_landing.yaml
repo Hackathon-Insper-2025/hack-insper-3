@@ -17,9 +17,3 @@ sources:
   - name: insper_data_3__postgres_ecommerce_db_product_category_name_translation
   - name: insper_data_3__postgres_ecommerce_db_products
   - name: insper_data_3__postgres_ecommerce_db_sellers
-  - name: postgre_connection__postgres_ecommerce_db_customers
-  - name: postgre_connection__postgres_ecommerce_db_geolocation
-  - name: postgre_connection__postgres_ecommerce_db_order_items
-  - name: postgre_connection__postgres_ecommerce_db_order_payments
-  - name: postgre_connection__postgres_ecommerce_db_order_reviews
-  - name: postgre_connection__postgres_ecommerce_db_orders

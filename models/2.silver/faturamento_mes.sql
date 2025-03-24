@@ -8,7 +8,6 @@ join
 where
     o.order_purchase_timestamp is not null
     and o.order_purchase_timestamp != ''
-    and o.order_status = 'delivered'
     and op.payment_value is not null
 group by
     DATE(DATE_TRUNC(PARSE_TIMESTAMP('%Y-%m-%d %H:%M:%S', o.order_purchase_timestamp), MONTH))
