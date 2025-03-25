@@ -10,7 +10,7 @@ with last_twelve_months as (
     order by
         year desc,
         month desc
-    limit 12
+    limit 15
 )
 
 select

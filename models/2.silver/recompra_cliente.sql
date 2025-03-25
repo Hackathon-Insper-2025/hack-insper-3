@@ -17,7 +17,7 @@ select
         2
     ) as repurchase_rate,
     avg(total_orders) as avg_orders_per_customer,
-    count(customer_id) as total_customers,
+    count(distinct customer_id) as total_customers,
     count(case when total_orders > 1 then 1 end) as returning_customers
 from
     customer_orders

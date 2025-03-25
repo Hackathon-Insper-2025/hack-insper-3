@@ -1,0 +1,130 @@
+version: 2
+
+models:
+  - name: orders
+    columns:
+      - name: order_id
+        description: Identificador único do pedido
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        description: Status do pedido
+        tests:
+          - accepted_values:
+              values: ['canceled', 'approved', 'delivered', 'created', 'invoiced', 'processing', 'shipped', 'unavailable']
+      - name: customer_id
+        description: Identificador do cliente associado ao pedido
+        tests:
+          - not_null
+          - relationships:
+              to: ref('customers')
+              field: customer_id
+      - name: order_purchase_timestamp
+        description: Data e hora da compra
+        tests:
+          - not_null
+
+  - name: order_items
+    columns:
+      - name: order_id
+        description: Identificador do pedido
+        tests:
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: order_item_id
+        description: Identificador do item dentro do pedido
+        tests:
+          - not_null
+      - name: product_id
+        description: Identificador do produto
+        tests:
+          - not_null
+          - relationships:
+              to: ref('products')
+              field: product_id
+      - name: seller_id
+        description: Identificador do vendedor
+        tests:
+          - not_null
+          - relationships:
+              to: ref('sellers')
+              field: seller_id
+      - name: price
+        description: Preço do item
+        tests:
+          - not_null
+
+  - name: orders_reviews
+    columns:
+      - name: review_id
+        description: Identificador único da avaliação
+        tests:
+          - not_null
+      - name: order_id
+        description: Identificador do pedido associado à avaliação
+        tests:
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+
+  - name: order_payments
+    columns:
+      - name: order_id
+        description: Identificador do pedido associado ao pagamento
+        tests:
+          - not_null
+          - relationships:
+              to: ref('orders')
+              field: order_id
+      - name: payment_type
+        description: Tipo de pagamento
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['credit_card', 'boleto', 'debit_card', 'voucher', 'not_defined']
+      - name: payment_value
+        description: Valor do pagamento
+        tests:
+          - not_null
+
+  - name: products
+    columns:
+      - name: product_id
+        description: Identificador único do produto
+        tests:
+          - unique
+          - not_null
+
+  - name: sellers
+    columns:
+      - name: seller_id
+        description: Identificador único do vendedor
+        tests:
+          - not_null
+      - name: seller_city
+        description: Cidade do vendedor
+        tests:
+          - not_null
+      - name: seller_state
+        description: Estado do vendedor
+        tests:
+          - not_null
+
+  - name: customers
+    columns:
+      - name: customer_id
+        description: Identificador único do cliente
+        tests:
+          - not_null
+      - name: customer_city
+        description: Cidade do cliente
+        tests:
+          - not_null
+      - name: customer_state
+        description: Estado do cliente
+        tests:
+          - not_null
